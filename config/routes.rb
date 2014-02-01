@@ -1,5 +1,8 @@
 CloudRadio::Application.routes.draw do
+  get '/homepage' => 'songs#homepage'
+  resources :songs
   devise_for :users
+  root to: 'songs#homepage'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
