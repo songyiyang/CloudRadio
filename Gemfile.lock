@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/medihack/make_flaggable.git
+  revision: d7309c0c89c6de3fa940eed314a594e77ca83466
+  specs:
+    make_flaggable (0.0.3)
+      activerecord (>= 3.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -134,6 +141,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  make_flaggable!
   pg
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)

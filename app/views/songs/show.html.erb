@@ -1,3 +1,13 @@
 <h1>Songs#show</h1>
+<div class = "notice">
+<% flash[:notice] %>
+</div>
+Hi I'm <%= current_user.email %>
 
-
+<% if current_user.present? %>
+	<td><%= toggle_like_button(@song, current_user) %></td>
+<% end %>
+<br>
+<%= current_user.flagged?(@song) %><br>
+<%= @song.url %><td></td>
+<%= @song.genre %>

@@ -1,7 +1,11 @@
 CloudRadio::Application.routes.draw do
   
   get '/homepage' => 'users#homepage'
-  resources :songs
+  resources :songs do
+    member do
+      get 'like'
+    end
+  end
   devise_for :users
   resources :users
   root to: 'users#homepage'

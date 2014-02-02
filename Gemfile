@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+gem 'make_flaggable', :git => 'git://github.com/medihack/make_flaggable.git'
+
 gem 'soundcloud'
 
 group :doc do
