@@ -1,1 +1,10 @@
 <h1>This is the homepage</h1>
+
+<% track_url = @track[Random.rand(0..199)]['permalink_url'] %>
+<% embed_info = @client.get('/oembed', :url => track_url) %>
+<% embed_http = embed_info['html'].split("src=\"")[1].split("\">")[0] %>
+
+<li><a href="<%= embed_http %>">Link to </a></li>
+
+<iframe width="30%" height="200" scrolling="no" frameborder="no" src="<%= embed_http %>"></iframe>
+
