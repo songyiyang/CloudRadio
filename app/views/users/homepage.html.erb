@@ -1,14 +1,27 @@
 <h1>This is the homepage</h1>
 <% flash[:notice] %>
-<% track_url = @track[Random.rand(0..199)]['permalink_url'] %>
+
+<% track_genre = calculate_genre(current_user, @client)%>
+<% track = track_genre[0] %>
+<% genre = track_genre[1] %>
+<% tag = track_genre[2] %>
+<% @song = Song.create(:name => track["title"], :genre => genre, :artist => track["user"]["username"]) %>
+<% track_url = track['permalink_url'] %>
 <% embed_info = @client.get('/oembed', :url => track_url) %>
 <% embed_http = embed_info['html'].split("src=\"")[1].split("\">")[0] %>
 
+<h3>Title: <%= @song[:name] %></h3>
+<h3>Genre: <%= @song[:genre] %></h3>
+<h3>Artist: <%= @song[:artist] %></h3>
+<h3>Tags: <%= tag %> </h3>
 <li><a href="<%= embed_http %>">Link to </a></li>
 
 <iframe width="30%" height="200" scrolling="no" frameborder="no" src="<%= embed_http %>"></iframe>
+
+
 <% if current_user.present? %>
 	<td><%= toggle_like_button(@song, current_user) %></td>
+	<td><%= toggle_unlike_button(@song, current_user) %></td>
 <% end %>
 <br>
 

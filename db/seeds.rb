@@ -6,4 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-song = Song.create(:url => "The first song", :genre => "pop", :song_id => 1)
+#song = Song.create(:name => "The first song", :artist => "ME", :genre => 'pop')
+#user = User.create(:email => "Zhang@gmail.com", :genre => "classical", :encrypted_password => "12345678")
+song2 = Song.create(:name => "The second song", :artist => "Him", :genre => 'jazz')
+song3 = Song.create(:name => "The third song", :artist => "her", :genre => 'classical')
+song4 = Song.create(:name => "The fourth song", :artist => "Like", :genre => 'country')

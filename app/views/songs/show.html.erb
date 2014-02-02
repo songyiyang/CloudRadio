@@ -8,6 +8,9 @@ Hi I'm <%= current_user.email %>
 	<td><%= toggle_like_button(@song, current_user) %></td>
 <% end %>
 <br>
-<%= current_user.flagged?(@song) %><br>
-<%= @song.url %><td></td>
-<%= @song.genre %>
+Like Song? <%= current_user.flagged?(@song) %><br>
+<%= current_user[:genre] %><br>
+<%= current_user[:genre]["#{@song[:genre]}"] %>
+<% if current_user.songs.include?(@song) %>
+<%= current_user.songs.find(@song).name %>
+<% end %>

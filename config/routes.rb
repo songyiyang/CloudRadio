@@ -4,6 +4,7 @@ CloudRadio::Application.routes.draw do
   resources :songs do
     member do
       get 'like'
+      get 'unlike'
     end
   end
   devise_for :users
