@@ -5,12 +5,14 @@
 Hi I'm <%= current_user.email %>
 
 <% if current_user.present? %>
-	<td><%= toggle_like_button(@song, current_user) %></td>
+	<td><%= toggle_like_button_in_show(@song, current_user) %></td>
 <% end %>
 <br>
 Like Song? <%= current_user.flagged?(@song) %><br>
 <%= current_user[:genre] %><br>
 <%= current_user[:genre]["#{@song[:genre]}"] %>
 <% if current_user.songs.include?(@song) %>
-<%= current_user.songs.find(@song).name %>
+<% current_user.songs.each do |song| %>
+		<td><%= song.songid %></td><br>
+<% end %>
 <% end %>

@@ -2,3 +2,9 @@
 
 
 Hi I'm <%= current_user.email %>
+
+<% current_user.songs.each do |song| %>
+		<%= song.name %><br>
+		<td><%= song.songid %></td><br>
+
+<% end %>

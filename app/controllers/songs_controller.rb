@@ -7,7 +7,6 @@ class SongsController < ApplicationController
 
     if current_user.flagged?(@song)
       current_user.unflag(@song)
-      current_user.songs.delete(@song)
       if current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre]["#{@song[:genre]}"] > 0
         current_user[:genre]["#{@song[:genre]}"] -= 1
       else 
@@ -17,7 +16,6 @@ class SongsController < ApplicationController
       msg = "You now don't like this song"
     else
       current_user.flag(@song, 'like')
-      current_user.songs << @song
       if current_user[:genre]["#{@song[:genre]}"].present?
         current_user[:genre]["#{@song[:genre]}"] += 1
       else 
@@ -47,7 +45,7 @@ class SongsController < ApplicationController
   end
 
   def index
-    current_user = User.first
+    @songs = Song.all
   end
 
   def new

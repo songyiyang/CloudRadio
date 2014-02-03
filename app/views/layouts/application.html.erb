@@ -7,13 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<h2>Login Info</h2>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <% if user_signed_in? %>
 	Signed in as <%= current_user.email %>
 <%=link_to 'sign out', destroy_user_session_path, method: :delete %>
 <% end %>
+
 <%= yield %>
 
 </body>
