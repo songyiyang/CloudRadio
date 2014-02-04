@@ -1,18 +1,23 @@
-<h1>Songs#show</h1>
+
+
 <div class = "notice">
 <% flash[:notice] %>
 </div>
-Hi I'm <%= current_user.email %>
 
-<% if current_user.present? %>
-	<td><%= toggle_like_button_in_show(@song, current_user) %></td>
+
+<div>
+<% if current_user.present? && !current_user.flagged?(@song) %>
+	<h3><td><%= toggle_like_button_in_show(@song, current_user) %></td></h3>
 <% end %>
+<% if current_user.present? && current_user.flagged?(@song) %>
+	<h3><td><%= toggle_like_button_in_show(@song, current_user) %></td></h3>
+<% end %>
+
 <br>
-Like Song? <%= current_user.flagged?(@song) %><br>
-<%= current_user[:genre] %><br>
-<%= current_user[:genre]["#{@song[:genre]}"] %>
-<% if current_user.songs.include?(@song) %>
-<% current_user.songs.each do |song| %>
-		<td><%= song.songid %></td><br>
-<% end %>
-<% end %>
+
+<h3>
+Song Name: <%= @song[:name] %><br>
+Genre: <%= @song[:genre] %><br>
+You've liked <%= current_user[:genre]["#{@song[:genre]}"] %> <%= @song[:genre] %> songs
+
+</h3>

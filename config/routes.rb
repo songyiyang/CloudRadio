@@ -7,6 +7,9 @@ CloudRadio::Application.routes.draw do
       get 'unlike'
     end
   end
+  get 'users/changepreference' => 'users#changepreference'
+  get 'users/preference' => 'users#preference'
+  get '/users/userlib' => 'users#userlib'
   devise_for :users
   resources :users
   root to: 'users#homepage'

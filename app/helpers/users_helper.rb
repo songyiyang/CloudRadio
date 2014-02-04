@@ -1,68 +1,79 @@
 module UsersHelper
 
 	def calculate_genre (user, client)
-		track_genre = ""
-		track = client.get('/tracks', :limit => 0)
-		@n = Random.rand(0..11)
-		#genre_array = %w(ambient bluegrass blues classical country dance disco dubstep electro electronic folk hiphop house indierock jazz latin metal metalcore mixtape piano pop punk rap reggae rock soul techno trance trap world audiobooks business comedy entertainment learning science sports storytelling)
-		genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
-		id_array = []
-		current_user.songs.each do |song|
-			id_array << song.songid
-		end
-		sum = current_user[:genre].values.sum
+		# init some parameters
+		track_id = []
+		id_array = get_id_array(user)
+		sum = user[:genre].values.sum
+	
+		# Handle the user preference
 		if sum != 0 && sum < 12
 			user[:genre].each do |genre|
-				tracks = @client.get('/tracks', :limit => 50, :tags => genre[0])
-				i = 0
-				count = 0
-				while count < genre[1]
-					if id_array.include?(tracks[i]["id"])
-						i += 1
-					else track << tracks[i]
-						i += 1
-						count += 1
-					end
-				end
+				track_id += get_track(genre[1], genre[0], client)
 			end
 		elsif sum >= 12
 			user[:genre].each do |genre|
 				count_size = 12 * genre[1] / sum
-				tracks = @client.get('/tracks', :limit => 40, :tags => genre[0])
-				i = 0
-				count = 0
-				while count < count_size
-					if id_array.include?(tracks[i]["id"])
-						i += 1
-					else track << tracks[i]
-						i += 1
-						count += 1
-					end
-				end
+				track_id += get_track(count_size, genre[0], client)
 			end
 		end
 
-		if track.size < 12
-			size_count = 12 - track.size
-			tracks = client.get('/tracks', :limit => 100, :tags => genre_array[Random.rand(0..11)])
-			i = 0
+		if track_id.size < 12
+			size_count = 12 - track_id.size
 			count = 0
 			while count < size_count
-				if id_array.include?(tracks[i]["id"])
-					i += 1
-				else track << tracks[i]
-					i += 1
+				track_find = Track.find(rand(0..2400))
+				if track_find.duration < 500000
+					track_id << track_find.track_id
 					count += 1
 				end
 			end
 		end
-		track_sound = track[@n]
-    tag = track_sound[:tag_list]
-    tag.split.each do |tag|
-    	if genre_array.include?(tag.downcase)
-    		track_genre = tag.downcase
-    	end
-    end
-    [track_sound, track_genre, tag]
+
+		# End handle and Prepare for output
+		track_sound = get_track_handled(track_id, client)
+
+
+    track_genre = Track.find_by_track_id(track_sound["id"].to_s)["genre"]
+    
+    # get embed information
+    track_url = track_sound['permalink_url']
+    embed_info = client.get('/oembed', :url => track_url)
+    embed_http = embed_info['html'].split("src=\"")[1].split("\">")[0]
+    # The return value
+    [track_sound, track_genre, embed_http]
+	end
+
+	def get_track(count, genre, client)
+		track_id = []
+		genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
+		loc = genre_array.index(genre) + 1
+		count_count = 0
+		while count_count < count
+			track_find = Track.find(rand(((loc-1)*200+1)..((loc)*200)))
+			if track_find.duration < 500000
+				track_id << track_find.track_id
+				count_count += 1
+			end
+		end
+		track_id
+	end
+
+	def get_track_handled(track_id, client)
+		track = track_id[rand(0..11)]
+		begin
+			track_sound = client.get("/tracks/#{track}")
+		rescue
+			track_sound = get_track_handled(track_id, client)
+		end
+		track_sound
+	end
+
+	def get_id_array(user)
+		id_array = []
+		user.songs.each do |song|
+			id_array << song.songid
+		end
+		id_array
 	end
 end

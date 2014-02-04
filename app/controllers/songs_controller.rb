@@ -4,21 +4,12 @@ class SongsController < ApplicationController
 
   def like
     @song = Song.find(params[:id])
-
-    if current_user.flagged?(@song)
-      current_user.unflag(@song)
-      if current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre]["#{@song[:genre]}"] > 0
-        current_user[:genre]["#{@song[:genre]}"] -= 1
-      else 
-        current_user[:genre]["#{@song[:genre]}"] = 0
-      end
-      current_user.save
-      msg = "You now don't like this song"
-    else
+    msg = "You've already liked this song!"
+    if !current_user.flagged?(@song)
       current_user.flag(@song, 'like')
       if current_user[:genre]["#{@song[:genre]}"].present?
         current_user[:genre]["#{@song[:genre]}"] += 1
-      else 
+      else
         current_user[:genre]["#{@song[:genre]}"] = 1
       end
       current_user.save
@@ -28,14 +19,17 @@ class SongsController < ApplicationController
   end
 
   def unlike
-      @song = Song.find(params[:id])
+    @song = Song.find(params[:id])
+    msg = "You've already disliked this song!"
+    if current_user.flagged?(@song)
+      current_user.unflag(@song)
       if current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre]["#{@song[:genre]}"] > 0
         current_user[:genre]["#{@song[:genre]}"] -= 1
-      else 
-        current_user[:genre]["#{@song[:genre]}"] = 0
       end
       current_user.save
-      redirect_to song_path
+      msg = "You now don't like this song"
+    end
+    redirect_to song_path, :notice => msg
     end
 
   def show

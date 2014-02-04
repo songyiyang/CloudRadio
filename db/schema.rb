@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203020729) do
+ActiveRecord::Schema.define(version: 20140203192322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,27 @@ ActiveRecord::Schema.define(version: 20140203020729) do
   add_index "flaggings", ["flagger_type", "flagger_id", "flaggable_type", "flaggable_id"], name: "access_flaggings", using: :btree
 
   create_table "songs", force: true do |t|
-    t.text    "name"
-    t.text    "artist"
-    t.text    "genre"
-    t.integer "user_id"
-    t.boolean "like"
-    t.integer "songid"
+    t.text     "name"
+    t.text     "artist"
+    t.text     "url"
+    t.text     "genre"
+    t.integer  "duration"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "like"
+    t.integer  "songid"
   end
 
   add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
+
+  create_table "tracks", force: true do |t|
+    t.text     "track_id"
+    t.text     "genre"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

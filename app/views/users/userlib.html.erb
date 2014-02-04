@@ -1,0 +1,27 @@
+<h1>This page shows User's preference structure</h1>
+
+<ol><h2>This is recent 5 songs you've listened:</h2>
+<% @songs.last(5).reverse.each do |song| %>
+	<li><%= song.name %>  |  	Duration:<%= " #{(song.duration / 60)}' #{(song.duration % 60 - 5)}'' " %></li>
+<% end %>
+</ol>
+<ol><h2> This shows this songs you've liked:</h2>
+<% @songs.each do |song| %>
+	<% if current_user.flagged?(song) %>
+	<li><%= song.name %><%= link_to "Link", song.url %></li>
+	<% end %>
+<% end %>
+
+
+<ul><h2> This shows genre you've liked</h2>
+<% current_user.genre.each do |genre| %>
+	<% if genre[1] > 0 %>
+		<% if genre[1] == 1 %>
+		<li><%= genre[0]%> : once</li>
+		<% else  %>
+		<li><%= genre[0]%> : <%= genre[1]%> times</li>
+		<% end %>
+	<% end %>
+<% end %>
+</ul>
+<h1><%= link_to 'change your preference', users_preference_path %></h1>

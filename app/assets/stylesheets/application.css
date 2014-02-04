@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+.notice{
+	color: tomato;
+}
+.send{
+	color :tomato;
+}
