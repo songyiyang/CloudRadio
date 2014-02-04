@@ -16,7 +16,7 @@ module UsersHelper
 			size_count = 100 - track_id.size
 			count = 0
 			while count < size_count
-				track_find = Track.find(rand(0..2400))
+				track_find = Track.find(rand(1..2400))
 				if track_find.duration < 500000
 					track_id << track_find.track_id
 					count += 1
@@ -26,8 +26,6 @@ module UsersHelper
 
 		# End handle and Prepare for output
 		track_sound = get_track_handled(track_id, client)
-
-
     track_genre = Track.find_by_track_id(track_sound["id"].to_s)["genre"]
     
     # get embed information
@@ -38,6 +36,7 @@ module UsersHelper
     [track_sound, track_genre, embed_http]
 	end
 
+	# this method will return a series of track id within an array for certain genre
 	def get_track(count, genre, client)
 		track_id = []
 		genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
@@ -53,6 +52,7 @@ module UsersHelper
 		track_id
 	end
 
+	# this method will return a track from soundcloud 
 	def get_track_handled(track_id, client)
 		track = track_id[rand(0..99)]
 		begin
@@ -63,6 +63,7 @@ module UsersHelper
 		track_sound
 	end
 
+	# this method will return array of user song id
 	def get_id_array(user)
 		id_array = []
 		user.songs.each do |song|

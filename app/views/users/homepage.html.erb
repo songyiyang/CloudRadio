@@ -1,7 +1,19 @@
 <meta http-equiv="Refresh" Content="<%= @duration %>">
+
 <% flash[:notice] %>
+
 <h3><%= link_to 'See your Preference', users_userlib_path, :target => "_blank" %></h3>
+
+<h3><%= link_to "Recently", users_recently_path(:n => 0), :target => "_blank" %></h3>
+
+<h3><%= link_to "See songs you've liked", users_songsliked_path, :target => "_blank" %></h3>
+
 <h2><%= link_to 'Next Song', homepage_path%></h2>
+
+<% if current_user.present? %>
+	<td><h3><%= toggle_like_button(@song, current_user) %></td></h3>
+	<td><h3><%= toggle_unlike_button(@song, current_user) %></td></h3>
+<% end %>
 
 <h3>Now playing: <%= @song[:name] %></h3>
 <h3>Genre: <%= @song[:genre] %></h3>
@@ -10,16 +22,10 @@
 
 <iframe width="50%" height="200" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
 
-<% if current_user.present? %>
-	<td><h2><%= toggle_like_button(@song, current_user) %></td></h2>
-	<td><h2><%= toggle_unlike_button(@song, current_user) %></td></h2>
-<% end %>
-<br>
 
-<ol><h2>This is recent 5 songs you've listened:</h2>
-<% @songs.last(5).reverse.each do |song| %>
-	<li><%= song.name %>  |  	Duration:<%= " #{(song.duration / 60)}' #{(song.duration % 60 - 5)}'' " %></li>
-<% end %>
-</ol>
+
+
+
+
 
 

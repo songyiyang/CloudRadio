@@ -1,12 +1,7 @@
 class UsersController < ApplicationController
   include UsersHelper
-
-  def show
-  end
-
-  def index
-  end
   
+  # this main homepage, play songs automaticly
   def homepage
     @client = Soundcloud.new(:client_id => 'ae9f52f98895e6a3663870f4de3549a5')
     track_genre = calculate_genre(current_user, @client)
@@ -20,8 +15,8 @@ class UsersController < ApplicationController
     @songs = Song.all
   end
 
+  # user preference page, can change user's preference
   def userlib
-    @songs = current_user.songs
     @genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
     genre_add = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
     if current_user.genre.size < 12
@@ -36,6 +31,8 @@ class UsersController < ApplicationController
       current_user.save
     end
   end
+
+  # can edit user's preference using this method
   def edit
     @genre = params[:genre]
     @act = params[:act]
@@ -55,11 +52,22 @@ class UsersController < ApplicationController
     redirect_to users_userlib_path
   end
 
-  def preference
-
-  end
-  def changepreference
-    
+  # will show the liked songs from user
+  def songsliked
+    @songs = current_user.songs
   end
 
+  def recently
+    flag = false
+    @songs = current_user.songs
+    size = @songs.size
+    @n = params[:n].to_i
+    if @n <= (size - size % 5 )
+      if @n == (size - size % 5)
+        @n += size % 5
+      else
+        @n += 5
+      end
+    end
+  end
 end

@@ -1,0 +1,6 @@
+<ol><h2> This shows this songs you've liked:</h2>
+<% @songs.each do |song| %>
+	<% if current_user.flagged?(song) %>
+	<li><%= song.name %><%= link_to "Link", song.url %></li>
+	<% end %>
+<% end %>

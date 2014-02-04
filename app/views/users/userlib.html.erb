@@ -1,23 +1,16 @@
-<h1>This page shows User's preference structure</h1>
 
-
-<h2> This shows genre you've liked</h2>	
+<h2> This shows genre you've liked and you can modify them</h2>	
 <h3> You can change the style, but make sure decreace other's first, the maximum is 100% :<br> Your current style: <%= current_user[:genre].values.sum %> %<br> Randomly style: <%= 100 - current_user[:genre].values.sum %> % </h3>
 <ul>
 <% current_user.genre.each do |genre| %>
 	<% @genre = genre[0] %>
-	<li><%= genre[0]%> : <%= genre[1]%> % |  <%= link_to "Increase", edit_user_path(current_user.id, :genre => @genre, :act => 'increase') %>  |  <%= link_to "Decreace" , edit_user_path(current_user.id, :genre => @genre, :act => 'decrease')%></li>
+	<li><%= genre[0]%> : <%= genre[1]%> % |  <%= link_to "Increase", users_edit_path(current_user.id, :genre => @genre, :act => 'increase') %>  |  <%= link_to "Decreace" , users_edit_path(current_user.id, :genre => @genre, :act => 'decrease')%></li>
 <% end %>
 <li>others : <%= 100 - current_user[:genre].values.sum %> %</li>
 </ul>
 
 
-<ol><h2> This shows this songs you've liked:</h2>
-<% @songs.each do |song| %>
-	<% if current_user.flagged?(song) %>
-	<li><%= song.name %><%= link_to "Link", song.url %></li>
-	<% end %>
-<% end %>
+
 
 
 

@@ -2,6 +2,7 @@ class SongsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:homepage]
 
   include SongsHelper
+  # this method will handle the like button
   def like
     @song = Song.find(params[:id])
     msg = "You've already liked this song!"
@@ -20,6 +21,7 @@ class SongsController < ApplicationController
     redirect_to song_path, :notice => msg
   end
 
+  # this method will handle the unlike button
   def unlike
     @song = Song.find(params[:id])
     msg = "You've already disliked this song!"
@@ -30,35 +32,14 @@ class SongsController < ApplicationController
       msg = "You now don't like this song"
       flag = true
     elsif flag == false
-        dislike_decrease(current_user, @song)
+      dislike_decrease(current_user, @song)
     end
-    
     redirect_to song_path, :notice => msg
   end
-
-
+  # will show the song after click like or unlike button
   def show
-
     @song = Song.find(params[:id])
-
   end
 
-  def index
-    @songs = Song.all
-  end
 
-  def new
-  end
-
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
-  def create
-  end
 end
