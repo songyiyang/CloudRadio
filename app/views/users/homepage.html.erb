@@ -3,7 +3,7 @@
 <h3><%= link_to 'See your Preference', users_userlib_path, :target => "_blank" %></h3>
 <h2><%= link_to 'Next Song', homepage_path%></h2>
 
-<h3>Title: <%= @song[:name] %></h3>
+<h3>Now playing: <%= @song[:name] %></h3>
 <h3>Genre: <%= @song[:genre] %></h3>
 <h3>Artist: <%= @song[:artist] %></h3>
 <li><a href="<%= @embed_http %>">Link to </a></li>
@@ -16,5 +16,10 @@
 <% end %>
 <br>
 
+<ol><h2>This is recent 5 songs you've listened:</h2>
+<% @songs.last(5).reverse.each do |song| %>
+	<li><%= song.name %>  |  	Duration:<%= " #{(song.duration / 60)}' #{(song.duration % 60 - 5)}'' " %></li>
+<% end %>
+</ol>
 
 

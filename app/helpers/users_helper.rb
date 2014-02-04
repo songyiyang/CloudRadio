@@ -7,19 +7,13 @@ module UsersHelper
 		sum = user[:genre].values.sum
 	
 		# Handle the user preference
-		if sum != 0 && sum < 12
+		if sum != 0 && sum <= 100
 			user[:genre].each do |genre|
 				track_id += get_track(genre[1], genre[0], client)
 			end
-		elsif sum >= 12
-			user[:genre].each do |genre|
-				count_size = 12 * genre[1] / sum
-				track_id += get_track(count_size, genre[0], client)
-			end
 		end
-
-		if track_id.size < 12
-			size_count = 12 - track_id.size
+		if track_id.size < 100
+			size_count = 100 - track_id.size
 			count = 0
 			while count < size_count
 				track_find = Track.find(rand(0..2400))
@@ -60,7 +54,7 @@ module UsersHelper
 	end
 
 	def get_track_handled(track_id, client)
-		track = track_id[rand(0..11)]
+		track = track_id[rand(0..99)]
 		begin
 			track_sound = client.get("/tracks/#{track}")
 		rescue

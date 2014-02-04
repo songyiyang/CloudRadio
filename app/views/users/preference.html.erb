@@ -1,12 +1,12 @@
 <h1>This page will let you change your preference</h1>
 
 <ul><h2> This shows genre you've liked</h2>
-<% current_user.genre.each do |@genre| %>
-	<% if @genre[1] > 0 %>
-		<% if @genre[1] == 1 %>
-		<li><%= @genre[0] %> : once  |  <%= link_to "Add", users_changepreference_path) %></li>
+<% current_user.genre.each do |genre| %>
+	<% if genre[1] > 0 %>
+		<% if genre[1] == 1 %>
+			<li><%= genre[0] %> : once  |  <%= link_to "Add" %></li>
 		<% else  %>
-		<li><%= @genre[0]%> : <%= @genre[1]%> times  |  <%= link_to "Add" %></li>
+			<li><%= genre[0]%> : <%= genre[1]%> times  |  <%= link_to "Add" %></li>
 		<% end %>
 	<% end %>
 <% end %>
