@@ -1,42 +1,73 @@
-<meta http-equiv="Refresh" Content="<%= @duration %>">
 
-<div class="homepage">
-<%= link_to raw("<span class=\"glyphicon glyphicon-home\"> CloudRadio</span>"), homepage_path, class: "btn btn-default btn-lg"%>
+<!-- <meta http-equiv="Refresh" Content="<%= @duration %>"> -->
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"> CloudRadio</span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li><div class="preference">
+					<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=800px,height=600px');return false;", class: "btn btn-default btn-lg" %>&nbsp &nbsp
+					</div>
+		  	</li>
+
+		  	<li><div class="recently">
+        	<%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=500,height=250');return false;", class: "btn btn-default btn-lg"%>&nbsp &nbsp
+					</div>
+				</li>
+
+				<li><div class="song_liked">
+					<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :onclick => "window.open(this.href, 'create_company',  'width=600,height=400');return false;", class: "btn btn-default btn-lg" %>&nbsp
+					</div>
+				</li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><div class="signin">Signed in as <%= current_user.email %>  <%=link_to 'sign out?', destroy_user_session_path, method: :delete %>
+					</div>
+				</li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="frame">
+<iframe width="60%" height="400" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
 </div>
 
-<div class="preference">
-<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;", class: "btn btn-default btn-lg" %>
+<div class="like_button">
+<div class="row">
+	<div class="col-md-6"><%= toggle_like_button(@song, current_user) %>&nbsp<%= toggle_unlike_button(@song, current_user) %></div>
+</div>
 </div>
 
-<div class="recently"><%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;", class: "btn btn-default btn-lg"%>
-</div>
+<div class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
 
-<div class="song_liked">
-<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :target => "_blank", class: "btn btn-default btn-lg" %>
-</div>
 
-<div class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next</span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
 
-<div class="buttons">
-<% if current_user.present? %>
-	<div class="like_home"><%= toggle_like_button(@song, current_user) %></div>
-	<div class="unlike_home"><%= toggle_unlike_button(@song, current_user) %></div>
-<% end %>
-</div>
 
-<div class="playing">Now playing: <%= @song[:name] %></div>
+<!-- <div class="playing">Now playing: <%= @song[:name] %></div> -->
+
+
 
 <div class="genre">Genre: <%= @song[:genre] %></div>
 
-<div class="artist">Artist: <%= @song[:artist] %></div>
-
-<div class="link"><a href="<%= @embed_http %>">Link to </a></div>
-
-<div class="frame">
-<iframe width="50%" height="200" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
-</div>
 
 
+<!-- <div class="artist">Artist: <%= @song[:artist] %></div>
+ -->
 
 
 

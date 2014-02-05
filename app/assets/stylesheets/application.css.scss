@@ -19,28 +19,33 @@
 }
 
 /* song like confirm page */
-.like{
 
-}
-
-.unlike{
-
-}
-
+	
 .song_name{
-	color: red;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
 }
 
-.song_genre{
+.link_to_pref{
+	margin-left: 40px;
+	color: purple;
 
 }
 
 .show_your_like{
+	margin-left: 20px;
+	color: green;
 
 }
 
-/* end of song like confirm page */
+/* end of  like confirm page */
 /* homepage */
+
+.homepage{
+	
+}
 .preference{
 
 }
@@ -54,6 +59,9 @@
 }
 
 .song_next{
+	position: relative;
+	left: 980px;
+	bottom: 280px;
 
 }
 
@@ -61,31 +69,26 @@
 
 }
 
-.like_home{
-
+.like_button{
+	position: relative;
+	left: 990px;
+	bottom: 300px;
 }
 
-.unlike_home{
-
-}
-
-.playing{
-
-}
 
 .genre{
+	position: relative;
+	left: 178px;
+	bottom: 400px;
+	color: tomato;
 
 }
 
-.artist{
-
-}
-
-.link{
-
-}
 
 .frame{
+	position:relative;
+	left:120px;
+	top: 40px;
 
 }
 
@@ -96,30 +99,47 @@
 
 }
 
-.userpref_description{
 
-}
-
-.current_style{
-
-}
-
-.random_style{
-
+.style{
+	float: right;
+	color: #428bca;
 }
 
 .change_pref{
+	float: left;
+	position: absolute;
+	top: 59px;
+}
 
+.change{
+	margin-left: 20px;
+}
+
+dl { margin-left: 100px; margin-top:16px;}
+dt { float: left; left-padding: 4px; }
+.bar {
+margin-left: 65px;
+margin-bottom: 20px;
+color: #fff;
+text-align: center;
+background: -webkit-gradient(linear, left top, left bottom, from(#ff7617), to(#ba550f));
+background-color: #ff7617;
+-webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.25)));
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
 }
 
 /* end of user preference page
 the recently page */
 
 .recent_title{
-
+	font-size: 18px;
+	color: lighten(#000, 60%)
 }
 
 .show_more{
+	background-color: tomato;
 
 }
 
@@ -127,11 +147,24 @@ the recently page */
 
 }
 
-/* end of recently page
-the songs like page */
+.song_name {
+	font-size: 17px;
+	color: #428bca;
+	margin: 3px;
+}
+
+/* end of recently page */
+
+/* the songs like page */
 
 .songs_like_title{
+	font-size: 18px;
+	color: lighten(#000, 60%)
+}
 
+.song_favorite{
+	color: #f0ad4e;
+	font-size: 19px;
 }
 
 .songs_like_content{

@@ -12,11 +12,13 @@ class SongsController < ApplicationController
         current_user[:genre]["#{@song[:genre]}"] += 10
       elsif current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum < 100
         current_user[:genre]["#{@song[:genre]}"] += (100 - current_user[:genre].values.sum)
-      elsif current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum == 0
+      elsif !current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum <= 90
         current_user[:genre]["#{@song[:genre]}"] = 10
+      elsif !current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum < 100
+        current_user[:genre]["#{@song[:genre]}"] = (100 - current_user[:genre].values.sum)
       end
       current_user.save
-      msg = "You now like this song"
+      msg = "You now like this song!"
     end
     redirect_to song_path, :notice => msg
   end
@@ -34,12 +36,14 @@ class SongsController < ApplicationController
     elsif flag == false
       dislike_decrease(current_user, @song)
     end
-    redirect_to song_path, :notice => msg
+    current_user.disliked[@song.songid.to_s] = true
+    current_user.save
+    redirect_to homepage_path
   end
+
   # will show the song after click like or unlike button
   def show
     @song = Song.find(params[:id])
   end
-
 
 end

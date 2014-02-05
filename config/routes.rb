@@ -10,8 +10,7 @@ CloudRadio::Application.routes.draw do
   get '/homepage' => 'users#homepage'
   get 'users/recently' => 'users#recently'
   get 'users/songsliked' => 'users#songsliked'
-  get 'users/changepreference' => 'users#changepreference'
-  get 'users/preference' => 'users#preference'
+  get 'users/reset' => 'users#reset'
   get '/users/userlib' => 'users#userlib'
   get '/users/edit' => 'users#edit'
   devise_for :users

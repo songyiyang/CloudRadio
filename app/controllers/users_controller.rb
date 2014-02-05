@@ -12,6 +12,9 @@ class UsersController < ApplicationController
     @embed_http = embed_info['html'].split("src=\"")[1].split("\">")[0]
     @duration = track["duration"] / 1000 + 5
     @song = Song.create(:name => track["title"], :genre => genre, :artist => track["user"]["username"], :songid => track["id"], :duration => @duration, :url =>track['permalink_url'])
+    if current_user.present?
+      redirect_to homepage_path
+    end
   end
   
   # this main homepage, play songs automaticly
@@ -82,4 +85,14 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  # reset user preference
+  def reset
+    current_user.genre.each do |genre|
+      current_user.genre[genre[0]] = 0  if current_user.genre[genre[0]].present?
+    end
+    current_user.save
+    redirect_to users_userlib_path
+  end
+
 end

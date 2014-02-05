@@ -1,11 +1,11 @@
 
-<div class="songs_like_title">This shows this songs you've liked</div>
+<div class="songs_like_title">Your favorite Songs...</div>
 
 <div class="songs_like_content">
 <ol>
 <% @songs.each do |song| %>
 	<% if current_user.flagged?(song) %>
-		<li><%= song.name %><%= link_to raw("<span class=\"glyphicon glyphicon-expand\"></span>"), song.url, class: "btn btn-default btn-lg" %></li>
+		<li><em class="song_favorite"><%= song.name %></em>&nbsp&nbsp<%= link_to raw("<span class=\"glyphicon glyphicon-headphones\"></span>"), song.url, class: "btn btn-default btn-sm" %></li>
 	<% end %>
 <% end %>
 </ol>

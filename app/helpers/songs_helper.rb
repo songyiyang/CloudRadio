@@ -1,10 +1,10 @@
 	module SongsHelper
 	def toggle_like_button(song, user)
-		link_to raw("<span class=\"glyphicon glyphicon-heart\"></span>"), like_song_path(song), class: "btn btn-default btn-lg", :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;"
+		link_to raw("<span class=\"glyphicon glyphicon-heart\"></span>"), like_song_path(song), class: "btn btn-default btn-lg", :onclick => "window.open(this.href, 'create_company',  'width=500,height=300');return false;"
 	end
 	
 	def toggle_unlike_button(song, user)
-		link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>"), unlike_song_path(song), class: "btn btn-default btn-lg", :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;"
+		link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>"), unlike_song_path(song), class: "btn btn-default btn-lg"
 	end
 
 	def toggle_like_button_in_show(song, user)

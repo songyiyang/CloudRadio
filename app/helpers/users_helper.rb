@@ -9,7 +9,7 @@ module UsersHelper
 		# Handle the user preference
 		if sum != 0 && sum <= 100
 			user[:genre].each do |genre|
-				track_id += get_track(genre[1], genre[0], client)
+				track_id += get_track(genre[1], genre[0], client, user)
 			end
 		end
 		if track_id.size < 100
@@ -17,7 +17,7 @@ module UsersHelper
 			count = 0
 			while count < size_count
 				track_find = Track.find(rand(1..2400))
-				if track_find.duration < 500000
+				if track_find.duration < 500000 && user.disliked[track_find.track_id] != true
 					track_id << track_find.track_id
 					count += 1
 				end
@@ -37,14 +37,14 @@ module UsersHelper
 	end
 
 	# this method will return a series of track id within an array for certain genre
-	def get_track(count, genre, client)
+	def get_track(count, genre, client, user)
 		track_id = []
 		genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
 		loc = genre_array.index(genre) + 1
 		count_count = 0
 		while count_count < count
 			track_find = Track.find(rand(((loc-1)*200+1)..((loc)*200)))
-			if track_find.duration < 500000
+			if track_find.duration < 500000 && user.disliked[track_find.track_id] != true
 				track_id << track_find.track_id
 				count_count += 1
 			end
