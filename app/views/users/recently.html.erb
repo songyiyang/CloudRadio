@@ -1,8 +1,14 @@
-<ol><h2>This is last <%= @n %> songs you've listened:</h2>
-<h3><%= link_to 'Show More', users_recently_path(:n => @n) %></h3>
+
+<div class="recent_title">This is last <%= @n %> songs you've listened...</div>
+
+<div class="show_more"><%= link_to 'Show More', users_recently_path(:n => @n) %></div>
+
+<div class="recent_content">
+<ol>
 <% @songs.last(@n).reverse.each do |song| %>
 	<li><%= song.name %>  |  	Duration:<%= " #{(song.duration / 60)}' #{(song.duration % 60 - 5)}'' " %></li>
 <% end %>
 </ol>
+</div>
 
 

@@ -1,23 +1,23 @@
-
-
-<div class = "notice">
-<% flash[:notice] %>
+<div class="notice">
+<%= flash[:notice] %>
 </div>
 
-
-<div>
+<div class="like">
 <% if current_user.present? && !current_user.flagged?(@song) %>
-	<h3><td><%= toggle_like_button_in_show(@song, current_user) %></td></h3>
+	<%= toggle_like_button_in_show(@song, current_user) %>
 <% end %>
+</div>
+
+<div class="unlike">
 <% if current_user.present? && current_user.flagged?(@song) %>
-	<h3><td><%= toggle_like_button_in_show(@song, current_user) %></td></h3>
+	<%= toggle_like_button_in_show(@song, current_user) %>
 <% end %>
+</div>
 
-<br>
+<div class="song_name">Song Name: <%= @song[:name] %></div>
 
-<h3>
-Song Name: <%= @song[:name] %><br>
-Genre: <%= @song[:genre] %><br>
-You've liked <%= current_user[:genre]["#{@song[:genre]}"] %>% <%= @song[:genre] %> songs
+<div class="song_genre">Genre: <%= @song[:genre] %></div>
+
+<div class="show_your_like">You've liked <%= current_user[:genre]["#{@song[:genre]}"] %>% <%= @song[:genre] %> songs</div>
 
 </h3>

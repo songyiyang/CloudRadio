@@ -63,6 +63,16 @@ module UsersHelper
 		track_sound
 	end
 
+	# this method is for non-login user
+	def get_track_nonlogin(track_id, client)
+		begin
+			track_sound = client.get("/tracks/#{track_id}")
+		rescue
+			track_sound = get_track_handled(track_id, client)
+		end
+		track_sound
+	end
+
 	# this method will return array of user song id
 	def get_id_array(user)
 		id_array = []

@@ -1,0 +1,16 @@
+<meta http-equiv="Refresh" Content="<%= @duration %>">
+
+<div class="song_next"><%= link_to 'Next Song', home_path%></div>
+
+<div class="playing">Now playing: <%= @song[:name] %></div>
+
+<div class="genre">Genre: <%= @song[:genre] %></div>
+
+<div class="artist">Artist: <%= @song[:artist] %></div>
+
+
+<div class="home_frame">
+<iframe width="50%" height="200" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
+</div>
+
+<div class="login"><%= link_to "Login", homepage_path %> to use the smart radio</div>

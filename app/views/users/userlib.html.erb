@@ -1,13 +1,21 @@
 
-<h2> This shows genre you've liked and you can modify them</h2>	
-<h3> You can change the style, but make sure decreace other's first, the maximum is 100% :<br> Your current style: <%= current_user[:genre].values.sum %> %<br> Randomly style: <%= 100 - current_user[:genre].values.sum %> % </h3>
+<div class="userpref_title"> This shows genre you've liked and you can modify them</div>
+
+<div class="userpref_description">You can change the style, but make sure decreace other's first, the maximum is 100%</div>
+
+<div class="current_style">Your current style: <%= current_user[:genre].values.sum %> % </div>
+
+<div class="random_style">Randomly style: <%= 100 - current_user[:genre].values.sum %> % </div>
+
+<div class="change_pref">
 <ul>
 <% current_user.genre.each do |genre| %>
 	<% @genre = genre[0] %>
-	<li><%= genre[0]%> : <%= genre[1]%> % |  <%= link_to "Increase", users_edit_path(current_user.id, :genre => @genre, :act => 'increase') %>  |  <%= link_to "Decreace" , users_edit_path(current_user.id, :genre => @genre, :act => 'decrease')%></li>
+	<li><%= genre[0]%> : <%= genre[1]%> % |  <%= link_to "Increase", users_edit_path(current_user.id, :genre => @genre, :act => 'increase') %>  |  <%= link_to "Decreace" , users_edit_path(current_user.id, :genre => @genre, :act => 'decrease')%></li><br>
 <% end %>
 <li>others : <%= 100 - current_user[:genre].values.sum %> %</li>
 </ul>
+</div>
 
 
 

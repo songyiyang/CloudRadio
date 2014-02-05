@@ -1,27 +1,40 @@
 <meta http-equiv="Refresh" Content="<%= @duration %>">
 
-<% flash[:notice] %>
+<div class="homepage">
+<%= link_to raw("<span class=\"glyphicon glyphicon-home\"> CloudRadio</span>"), homepage_path, class: "btn btn-default btn-lg"%>
+</div>
 
-<h3><%= link_to 'See your Preference', users_userlib_path, :target => "_blank" %></h3>
+<div class="preference">
+<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;", class: "btn btn-default btn-lg" %>
+</div>
 
-<h3><%= link_to "Recently", users_recently_path(:n => 0), :target => "_blank" %></h3>
+<div class="recently"><%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=400,height=400');return false;", class: "btn btn-default btn-lg"%>
+</div>
 
-<h3><%= link_to "See songs you've liked", users_songsliked_path, :target => "_blank" %></h3>
+<div class="song_liked">
+<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :target => "_blank", class: "btn btn-default btn-lg" %>
+</div>
 
-<h2><%= link_to 'Next Song', homepage_path%></h2>
+<div class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next</span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
 
+<div class="buttons">
 <% if current_user.present? %>
-	<td><h3><%= toggle_like_button(@song, current_user) %></td></h3>
-	<td><h3><%= toggle_unlike_button(@song, current_user) %></td></h3>
+	<div class="like_home"><%= toggle_like_button(@song, current_user) %></div>
+	<div class="unlike_home"><%= toggle_unlike_button(@song, current_user) %></div>
 <% end %>
+</div>
 
-<h3>Now playing: <%= @song[:name] %></h3>
-<h3>Genre: <%= @song[:genre] %></h3>
-<h3>Artist: <%= @song[:artist] %></h3>
-<li><a href="<%= @embed_http %>">Link to </a></li>
+<div class="playing">Now playing: <%= @song[:name] %></div>
 
+<div class="genre">Genre: <%= @song[:genre] %></div>
+
+<div class="artist">Artist: <%= @song[:artist] %></div>
+
+<div class="link"><a href="<%= @embed_http %>">Link to </a></div>
+
+<div class="frame">
 <iframe width="50%" height="200" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
-
+</div>
 
 
 

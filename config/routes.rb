@@ -6,6 +6,7 @@ CloudRadio::Application.routes.draw do
       get 'unlike'
     end
   end
+  get '/home' => 'users#home'
   get '/homepage' => 'users#homepage'
   get 'users/recently' => 'users#recently'
   get 'users/songsliked' => 'users#songsliked'
@@ -14,6 +15,6 @@ CloudRadio::Application.routes.draw do
   get '/users/userlib' => 'users#userlib'
   get '/users/edit' => 'users#edit'
   devise_for :users
-  root to: 'users#homepage'
+  root to: 'users#home'
   
 end
