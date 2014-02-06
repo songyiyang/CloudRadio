@@ -43,54 +43,56 @@
 /* end of  like confirm page */
 /* homepage */
 
-.homepage{
-	
-}
-.preference{
 
+.preference{
+	margin-top: 8px;
 }
 
 .recently{
-
+	margin-top: 8px;
+	margin-left: 20px;
 }
 
 .song_liked{
-
+	margin-top: 8px;
+	margin-left: 20px;
 }
 
-.song_next{
-	position: relative;
-	left: 980px;
-	bottom: 280px;
 
-}
 
 .buttons{
 
 }
 
-.like_button{
-	position: relative;
-	left: 990px;
-	bottom: 300px;
+.frame{
+	position:relative;
+	left:8%;
+	margin-top: 30px;
 }
 
+#two{
+	position: absolute;
+	left: 65%;
+	bottom: 60%;
+}
 
-.genre{
-	position: relative;
-	left: 178px;
-	bottom: 400px;
+#three{
+	position: absolute;
+	left: 65%;
+	bottom: 50%;
+
+}
+
+#four{
+	position: absolute;
+	left: 10%;
+	bottom: 70%;
 	color: tomato;
 
 }
 
 
-.frame{
-	position:relative;
-	left:120px;
-	top: 40px;
 
-}
 
 /* end of homepage */
 /* user preference page*/

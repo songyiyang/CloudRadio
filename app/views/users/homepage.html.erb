@@ -19,17 +19,17 @@
       <ul class="nav navbar-nav">
 
         <li><div class="preference">
-					<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=800px,height=600px');return false;", class: "btn btn-default btn-lg" %>&nbsp &nbsp
+					<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=800px,height=600px');return false;", class: "btn btn-default btn-md" %>&nbsp &nbsp
 					</div>
 		  	</li>
 
 		  	<li><div class="recently">
-        	<%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=500,height=250');return false;", class: "btn btn-default btn-lg"%>&nbsp &nbsp
+        	<%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=500,height=250');return false;", class: "btn btn-default btn-md"%>&nbsp &nbsp
 					</div>
 				</li>
 
 				<li><div class="song_liked">
-					<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :onclick => "window.open(this.href, 'create_company',  'width=600,height=400');return false;", class: "btn btn-default btn-lg" %>&nbsp
+					<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :onclick => "window.open(this.href, 'create_company',  'width=600,height=400');return false;", class: "btn btn-default btn-md" %>&nbsp
 					</div>
 				</li>
       </ul>
@@ -43,26 +43,26 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="frame">
+<div id="one" class="frame">
 <iframe width="60%" height="400" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
+
+
+<div id="two" class="like_button">
+	<%= toggle_like_button(@song, current_user) %>&nbsp&nbsp<%= toggle_unlike_button(@song, current_user) %>
+	<br><br><br>
 </div>
 
-<div class="like_button">
-<div class="row">
-	<div class="col-md-6"><%= toggle_like_button(@song, current_user) %>&nbsp<%= toggle_unlike_button(@song, current_user) %></div>
+<div id="three" class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
+
+<div id="four" class="genre">Genre: <%= @song[:genre] %></div>
 </div>
-</div>
-
-<div class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
-
-
 
 
 <!-- <div class="playing">Now playing: <%= @song[:name] %></div> -->
 
 
 
-<div class="genre">Genre: <%= @song[:genre] %></div>
+
 
 
 
