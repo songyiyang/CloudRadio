@@ -70,15 +70,34 @@
 	text-align: center;
 }
 .navbar {
-		background-image: image-url('background.jpg');
+		background-image: image-url('blue_background.jpg');
+		background-size: cover;
+		background-repeat:no-repeat;
     margin-bottom: 0;
 }
 
 .homepage_div{
-	background-image: image-url('background.jpg');
-
-	/*background-color:#cccccc;*/
+	background-image: image-url('blue_background.jpg');
+	background-size: cover;
+	background-repeat:no-repeat;
 }
+.masthead{
+	margin-bottom:0;
+	padding-bottom:10px;
+}
+
+#cloud{
+	padding-top: 14px;
+}
+.muted{
+	margin-top:0;
+	margin-bottom:0;
+}
+.jumbotron{
+	margin-top:0;
+	padding-bottom: 200px;
+}
+
 
 .frame{
 	position:relative;
