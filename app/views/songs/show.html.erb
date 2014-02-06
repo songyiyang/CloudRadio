@@ -1,12 +1,13 @@
 
 
-<div class="song_name"><%= @song[:name] %></div>
+<div class="song_name"><h3><%= @song[:name] %></h3></div>
 
-
+<br>
 <div class="notice">
 <%= flash[:notice] %>
 </div>
+<br>
 
 <div class="show_your_like">There are <%= current_user[:genre]["#{@song[:genre]}"] %>% of <%= @song[:genre] %> songs in your style graph...</div>
-
+<br>
 <div class="link_to_pref">See <%= link_to "Preference", users_userlib_path %> page to see and modify your music style...</div>

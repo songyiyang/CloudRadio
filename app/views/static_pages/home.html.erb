@@ -1,0 +1,40 @@
+
+<div class="container-narrow">
+  <div class="masthead">
+    <%= render 'layouts/user_header' %>
+    <h3 class="muted">&nbsp<span class="glyphicon glyphicon-cloud">&nbspCloudRadio</h3>
+    <h5 class="muted">&nbsp&nbspA smarter radio for your genre</h5>
+  </div>
+  <hr />
+
+
+<div class="jumbotron">
+  <% if user_signed_in? %>
+    <h1 class="home_title">Welcome back to CloudRadio!</h1>
+    <p class="home_descrp">
+      Continue to use your smart cloud radio, it's even smarter than you think.
+    </p>
+    <div class = "home_sign_out_button">
+    <%= link_to "Continue to your CloudRadio...", homepage_path, :class => 'btn btn-success' %>
+    <span class="home_span"> </span>
+    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => 'btn btn-large btn-danger' %>
+    </div>
+  <% else %>
+    <h1 class="home_title">Welcome!</h1>
+    <p class="home_descrp">
+      Sign in or Sign up to use the smart radio, or just try the stupid...
+    </p>
+    <div class="row-fluid">
+      <div class = "home_sign_out_button">
+        <%= link_to "Sign In", new_user_session_path, :class => "btn btn-large btn-success" %>
+
+        <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-large btn-success" %><br><br>
+        <div>
+        <%= link_to "Continue without sign in...", home_path %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+</div>

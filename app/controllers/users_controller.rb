@@ -72,6 +72,9 @@ class UsersController < ApplicationController
     @songs = current_user.songs
   end
 
+  def about
+  end
+  
   def recently
     flag = false
     @songs = current_user.songs

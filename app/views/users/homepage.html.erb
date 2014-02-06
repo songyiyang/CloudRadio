@@ -1,16 +1,11 @@
 
-<!-- <meta http-equiv="Refresh" Content="<%= @duration %>"> -->
+<meta http-equiv="Refresh" Content="<%= @duration %>">
 
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+      
       <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"> CloudRadio</span></a>
     </div>
 
@@ -19,19 +14,24 @@
       <ul class="nav navbar-nav">
 
         <li><div class="preference">
-					<%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=800px,height=600px');return false;", class: "btn btn-default btn-md" %>&nbsp &nbsp
-					</div>
-		  	</li>
+          <%= link_to raw("<span class=\"glyphicon glyphicon-cog\"> Preference</span>"), users_userlib_path, :onclick => "window.open(this.href, 'create_company',  'width=800px,height=600px');return false;", class: "btn btn-default btn-md" %>&nbsp &nbsp
+          </div>
+        </li>
 
-		  	<li><div class="recently">
-        	<%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=500,height=250');return false;", class: "btn btn-default btn-md"%>&nbsp &nbsp
-					</div>
-				</li>
+        <li><div class="recently">
+          <%= link_to raw("<span class=\"glyphicon glyphicon-music\"> Recent</span>"), users_recently_path(:n => 0), :onclick => "window.open(this.href, 'create_company',  'width=500,height=250');return false;", class: "btn btn-default btn-md"%>&nbsp &nbsp
+          </div>
+        </li>
 
-				<li><div class="song_liked">
-					<%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :onclick => "window.open(this.href, 'create_company',  'width=600,height=400');return false;", class: "btn btn-default btn-md" %>&nbsp
-					</div>
-				</li>
+        <li><div class="song_liked">
+          <%= link_to raw("<span class=\"glyphicon glyphicon-star\"> Favorite</span>"), users_songsliked_path, :onclick => "window.open(this.href, 'create_company',  'width=600,height=400');return false;", class: "btn btn-default btn-md" %>&nbsp
+          </div>
+        </li>
+        <li><div class="about">
+          <%= link_to raw("<span class=\"glyphicon glyphicon-cloud\"> About</span>"), users_about_path,
+            :onclick => "window.open(this.href, 'create_company', 'width=600, height=400');return false;", class: "btn btn-default btn-md" %> &nbsp
+          </div>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -43,20 +43,29 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="homepage_div">
+
 <div id="one" class="frame">
 <iframe width="60%" height="400" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
 
-
+<div class="buttons">
 <div id="two" class="like_button">
-	<%= toggle_like_button(@song, current_user) %>&nbsp&nbsp<%= toggle_unlike_button(@song, current_user) %>
-	<br><br><br>
+	<%= toggle_like_button(@song, current_user) %>
+	<br><br><br><br>
 </div>
 
+<div id="unlike" class="unlike_button">
+  <%= toggle_unlike_button(@song, current_user) %>
+  
+</div>
 <div id="three" class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
-
-<div id="four" class="genre">Genre: <%= @song[:genre] %></div>
 </div>
-
+<div id="four" class="genre">&nbspGenre: <%= @song[:genre] %>&nbsp</div>
+</div>
+<div class="remider">
+@CloudRadio Created by <em>Yiyang Song</em>
+</div>
+</div>
 
 <!-- <div class="playing">Now playing: <%= @song[:name] %></div> -->
 

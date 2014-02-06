@@ -13,7 +13,8 @@ CloudRadio::Application.routes.draw do
   get 'users/reset' => 'users#reset'
   get '/users/userlib' => 'users#userlib'
   get '/users/edit' => 'users#edit'
+  get '/users/about' => 'users#about'
   devise_for :users
-  root to: 'users#home'
-  
+  #root to: 'users#home'
+  root to: 'static_pages#home'
 end

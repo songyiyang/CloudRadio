@@ -1,6 +1,5 @@
 @import "bootstrap";
 
-
 /* application layout page */
 .notice{
 	color:tomato;
@@ -58,22 +57,54 @@
 	margin-left: 20px;
 }
 
+.about{
+	margin-top: 8px;
+	margin-left: 20px;
+}
 
+.about_title{
+	text-align: center;
+}
 
-.buttons{
+.about_content{
+	text-align: center;
+}
+.navbar {
+		background-image: image-url('background.jpg');
+    margin-bottom: 0;
+}
 
+.homepage_div{
+	background-image: image-url('background.jpg');
+
+	/*background-color:#cccccc;*/
 }
 
 .frame{
 	position:relative;
-	left:8%;
-	margin-top: 30px;
+	margin-left: 100px;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+.nonlog_frame{
+	position:relative;
+	margin-left: 20%;
+	padding-top: 5%;
+	padding-bottom: 10%;
 }
 
 #two{
 	position: absolute;
 	left: 65%;
 	bottom: 60%;
+}
+
+#unlike{
+	position: absolute;
+	left: 65%;
+	bottom: 60%;
+
 }
 
 #three{
@@ -85,13 +116,34 @@
 
 #four{
 	position: absolute;
-	left: 10%;
-	bottom: 70%;
+	font-size: 11px;
+	left: 33%;
+	bottom:81%;
 	color: tomato;
+	background-color: black;
+}
+
+#five{
+	position: absolute;
+	left: 1%;
+	bottom: 40%;
 
 }
 
+#six{
+	position: absolute;
+	font-size: 11px;
+	left: 42%;
+	bottom:82%;
+	color: tomato;
+	background-color: black;
+}
 
+.remider{
+	color:#428bca;
+	margin-left: 40%
+
+}
 
 
 /* end of homepage */
@@ -150,7 +202,6 @@ the recently page */
 }
 
 .song_name {
-	font-size: 17px;
 	color: #428bca;
 	margin: 3px;
 }
@@ -204,6 +255,58 @@ the recently page */
 
 .button{
 	
+}
+
+
+
+/*home sign in page*/
+.home_title{
+	text-align: center;
+}
+
+.home_descrp{
+	padding-top: 40px;
+	text-align: center;
+}
+.home_sign_in{
+
+}
+.home_sign_out_button{
+	padding-top:15px;
+	text-align: center;
+}
+.home_span_sign{
+	padding-right: 200px;
+}
+
+.home_span{
+	padding-right: 400px;
+}
+/* User sign in and sign forms. */
+.border-form-div {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
 }
 
 

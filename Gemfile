@@ -37,7 +37,6 @@ gem 'soundcloud'
 
 gem 'bootstrap-sass', '~> 3.1.0'
 
-gem "bootstrap-sass-rails", "~> 2.2.2.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
