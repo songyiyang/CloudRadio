@@ -47,6 +47,7 @@
 
 <div id="one" class="frame">
 <iframe width="60%" height="400" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
+</div>
 
 <div class="buttons">
 <div id="two" class="like_button">
@@ -56,12 +57,13 @@
 
 <div id="unlike" class="unlike_button">
   <%= toggle_unlike_button(@song, current_user) %>
-  
 </div>
+
 <div id="three" class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
-</div>
+
 <div id="four" class="genre">&nbspGenre: <%= @song[:genre] %>&nbsp</div>
 </div>
+
 <div class="remider">
 @CloudRadio Created by <em>Yiyang Song</em>
 </div>

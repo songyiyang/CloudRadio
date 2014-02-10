@@ -79,6 +79,14 @@
 .homepage_div{
 	background-image: image-url('blue_background.jpg');
 	background-size: cover;
+	background-repeat:repeat-y;
+	width: 100%;
+	padding-bottom: 100px;
+}
+
+.home_page{
+	background-image: image-url('blue_background.jpg');
+	background-size: cover;
 	background-repeat:no-repeat;
 }
 .masthead{
@@ -160,8 +168,8 @@
 
 .remider{
 	color:#428bca;
-	margin-left: 40%
-
+	margin-left: 40%;
+	height: 100%;
 }
 
 
