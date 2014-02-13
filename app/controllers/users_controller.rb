@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def home
     @client = Soundcloud.new(:client_id => 'ae9f52f98895e6a3663870f4de3549a5')
     track_find = Track.find(rand(1..2400))
-    track = get_track_nonlogin(track_find.track_id, @client)
+    track = User.get_track_nonlogin(track_find.track_id, @client)
     genre = track["genre"]
     track_url = track['permalink_url']
     embed_info = @client.get('/oembed', :url => track_url)
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # this main homepage, play songs automaticly
   def homepage
     @client = Soundcloud.new(:client_id => 'ae9f52f98895e6a3663870f4de3549a5')
-    track_genre = calculate_genre(current_user, @client)
+    track_genre = User.calculate_genre(current_user, @client)
     track = track_genre[0]
     genre = track_genre[1]
     @embed_http = track_genre[2]

@@ -37,6 +37,7 @@ gem 'soundcloud'
 
 gem 'bootstrap-sass', '~> 3.1.0'
 
+gem 'newrelic_rpm'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,6 +46,18 @@ end
 
 
 gem 'rails_12factor', group: :production
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "database_cleaner", "~> 1.2.0"
+  gem 'shoulda-matchers'
+  gem 'guard-rspec', require: false
+end
+
+group :development do
+	gem 'bullet'
+end
+gem 'simplecov', require: false, group: :test 
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

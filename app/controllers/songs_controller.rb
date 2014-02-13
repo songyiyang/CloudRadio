@@ -34,11 +34,11 @@ class SongsController < ApplicationController
     flag = false
     if current_user.flagged?(@song)
       current_user.unflag(@song)
-      dislike_decrease(current_user, @song)
+      Song.dislike_decrease(current_user, @song)
       msg = "You now don't like this song"
       flag = true
     elsif flag == false
-      dislike_decrease(current_user, @song)
+      Song.dislike_decrease(current_user, @song)
     end
     current_user.disliked[@song.songid.to_s] = true
     current_user.save

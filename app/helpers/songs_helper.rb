@@ -1,4 +1,4 @@
-	module SongsHelper
+module SongsHelper
 	def toggle_like_button(song, user)
 		link_to raw("<span class=\"glyphicon glyphicon-heart\"> LikeIt! </span>"), like_song_path(song), class: "btn btn-default btn-lg", :onclick => "window.open(this.href, 'create_company',  'width=500,height=300');return false;"
 	end
@@ -15,12 +15,5 @@
 		end
 	end
 
-	def dislike_decrease(current_user, song)
-		if current_user[:genre]["#{song[:genre]}"].present? && current_user[:genre]["#{song[:genre]}"] >= 10
-      current_user[:genre]["#{song[:genre]}"] -= 10
-    elsif current_user[:genre]["#{song[:genre]}"].present? && current_user[:genre]["#{song[:genre]}"] <= 10 && current_user[:genre]["#{song[:genre]}"] > 0
-      current_user[:genre]["#{song[:genre]}"] = 0
-    end
-    current_user.save
-	end
+	
 end
