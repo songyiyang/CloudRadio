@@ -39,6 +39,8 @@ gem 'bootstrap-sass', '~> 3.1.0'
 
 gem 'newrelic_rpm'
 
+gem 'better_errors'
+gem "binding_of_caller"
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -49,12 +51,20 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
-  gem "database_cleaner", "~> 1.2.0"
-  gem 'shoulda-matchers'
   gem 'guard-rspec', require: false
 end
 
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+end
+
 group :development do
+  gem 'rack-mini-profiler'
 	gem 'bullet'
 end
 gem 'simplecov', require: false, group: :test 

@@ -15,21 +15,23 @@ class User < ActiveRecord::Base
 		track_id = []
 		id_array = user.get_id_array(user)
 		sum = user[:genre].values.sum
-	
+		array = []
 		# Handle the user preference
 		if sum != 0 && sum <= 100
 			user[:genre].each do |genre|
 				track_id += user.get_track(genre[1], genre[0], client, user)
 			end
 		end
+
 		if track_id.size < 100
 			size_count = 100 - track_id.size
-			count = 0
-			while count < size_count
-				track_find = Track.find(rand(1..2400))
+			size_count.times do
+				array << rand(1..2400)
+			end
+			track_finds = Track.find(array)
+			track_finds.each do |track_find|
 				if track_find.duration < 500000 && user.disliked[track_find.track_id] != true
 					track_id << track_find.track_id
-					count += 1
 				end
 			end
 		end
@@ -49,14 +51,17 @@ class User < ActiveRecord::Base
 	# this method will return a series of track id within an array for certain genre
 	def get_track(count, genre, client, user)
 		track_id = []
+		array = []
 		genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
 		loc = genre_array.index(genre) + 1
-		count_count = 0
-		while count_count < count
-			track_find = Track.find(rand(((loc-1)*200+1)..((loc)*200)))
+
+		count.times do
+			array << rand(((loc-1)*200+1)..((loc)*200))
+		end
+			track_find = Track.find(array)
+		track_find.each do |track_find|
 			if track_find.duration < 500000 && user.disliked[track_find.track_id] != true
 				track_id << track_find.track_id
-				count_count += 1
 			end
 		end
 		track_id
@@ -64,7 +69,8 @@ class User < ActiveRecord::Base
 
 	# this method will return a track from soundcloud 
 	def get_track_handled(track_id, client)
-		track = track_id[rand(0..99)]
+
+		track = track_id[rand(0..track_id.size)]
 		begin
 			track_sound = client.get("/tracks/#{track}")
 		rescue
