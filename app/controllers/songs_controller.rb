@@ -2,17 +2,18 @@ class SongsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:homepage]
 
   include SongsHelper
-  
   # this method will handle the like button
   def like
     @song = Song.find(params[:id])
     msg = "You've already liked this song!"
     genre_array = %w(blues classical country electro folk hiphop jazz metal mixtape pop rock rap)
     if current_user[:genre] == {}
+
         genre_array.each do |genre|
           current_user.genre[genre] = 0
         end
     end
+
     if !current_user.flagged?(@song)
       current_user.flag(@song, 'like')
       if current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum <= 90
@@ -20,7 +21,7 @@ class SongsController < ApplicationController
       elsif current_user[:genre]["#{@song[:genre]}"].present? && current_user[:genre].values.sum < 100
         current_user[:genre]["#{@song[:genre]}"] += (100 - current_user[:genre].values.sum)
       end
-      
+
       msg = "You now like this song!"
     end
     current_user.save

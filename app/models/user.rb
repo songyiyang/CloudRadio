@@ -1,3 +1,4 @@
+# User Class should have a commit
 class User < ActiveRecord::Base
 	has_many :songs
 	make_flagger
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
   def self.calculate_genre (user, client)
 		# init some parameters
 		track_id = []
-		id_array = user.get_id_array(user)
+		#id_array = user.get_id_array(user)
 		sum = user[:genre].values.sum
 		array = []
 		# Handle the user preference
@@ -39,7 +40,7 @@ class User < ActiveRecord::Base
 		# End handle and Prepare for output
 		track_sound = user.get_track_handled(track_id, client)
     track_genre = Track.find_by_track_id(track_sound["id"].to_s)["genre"]
-    
+
     # get embed information
     track_url = track_sound['permalink_url']
     embed_info = client.get('/oembed', :url => track_url)
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
 		count.times do
 			array << rand(((loc-1)*200+1)..((loc)*200))
 		end
-			track_find = Track.find(array)
+		track_find = Track.find(array)
 		track_find.each do |track_find|
 			if track_find.duration < 500000 && user.disliked[track_find.track_id] != true
 				track_id << track_find.track_id
@@ -90,11 +91,12 @@ class User < ActiveRecord::Base
 	end
 
 	# this method will return array of user song id
-	def get_id_array(user)
-		id_array = []
-		user.songs.each do |song|
-			id_array << song.songid
-		end
-		id_array
-	end
+	# this is feature envy, just comment it out
+	# def get_id_array(user)
+	# 	id_array = []
+	# 	user.songs.each do |song|
+	# 		id_array << song.songid
+	# 	end
+	# 	id_array
+	# end
 end

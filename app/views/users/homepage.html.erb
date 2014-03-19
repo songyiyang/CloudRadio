@@ -1,6 +1,4 @@
 
-<meta http-equiv="Refresh" Content="<%= @duration %>">
-
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -46,7 +44,7 @@
 <div class="homepage_div">
 
 <div id="one" class="frame">
-<iframe width="60%" height="400" scrolling="no" frameborder="no" src="<%= @embed_http %>&auto_play=true" ></iframe>
+<iframe width='60%' height='400' scrolling='no' frameborder='no' src="<%= @embed_http%>&auto_play=true" ></iframe>
 </div>
 
 <div class="buttons">
@@ -55,20 +53,20 @@
 	<br><br><br><br>
 </div>
 
-<div id="unlike" class="unlike_button">
-  <%= toggle_unlike_button(@song, current_user) %>
-</div>
+<button id="unlike" class="btn btn-default btn-lg", data-song="<%= @song.id %>">
+ThrowAway...
+</button>
 
-<div id="three" class="song_next"><%= link_to raw("<span class=\"glyphicon glyphicon-forward\"> Next &nbsp </span>"), homepage_path, class: "btn btn-default btn-lg" %></div>
+<button id="three" class="btn btn-default btn-lg">Next</button>
 
 <div id="four" class="genre">&nbspGenre: <%= @song[:genre] %>&nbsp</div>
 </div>
 
 <div class="remider">
-@CloudRadio Created by <em>Yiyang Song</em> for <strong>sb</strong>
+@CloudRadio Created by <em>Yiyang Song</em> for <strong>YY</strong>
 </div>
 </div>
-
+<div><%= link_to "Refresh", homepage_path %></div>
 <!-- <div class="playing">Now playing: <%= @song[:name] %></div> -->
 
 
