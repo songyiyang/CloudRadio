@@ -70,7 +70,6 @@ class UsersController < ApplicationController
       # original one has too many statements, so refact it
     elsif @act == 'decrease' && user_genre_sum >= 5 && current_user_genre[@genre] >= 5
         current_user_genre[@genre] -= 5
-      end
     end
     current_user.save
     redirect_to users_userlib_path
@@ -83,7 +82,7 @@ class UsersController < ApplicationController
 
   def about
   end
-  
+
   def recently
     flag = false
     @songs = current_user.songs
