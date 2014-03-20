@@ -1,3 +1,4 @@
+# Just a Controller need the description
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!,  only: [:home]
   include UsersHelper
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
       redirect_to homepage_path
     end
   end
-  
+
   # this main homepage, play songs automaticly
   def homepage
     @client = Soundcloud.new(:client_id => 'ae9f52f98895e6a3663870f4de3549a5')
@@ -28,6 +29,10 @@ class UsersController < ApplicationController
     @song = Song.create(:name => track["title"], :genre => genre, :artist => track["user"]["username"], :songid => track["id"], :duration => @duration, :url =>track['permalink_url'])
     current_user.songs << @song
     current_user.save
+    respond_to do |format|
+      format.json { render json: {embed_http: @embed_http, song: @song} }
+      format.html
+    end
   end
 
   # user preference page, can change user's preference
@@ -51,19 +56,22 @@ class UsersController < ApplicationController
   def edit
     @genre = params[:genre]
     @act = params[:act]
+    # use current_user.genre and current_user[:genre].values.sum multiple times
+    # so have the DuplicateMethodCall, have already refact it
+    current_user_genre = current_user.genre
+    user_genre_sum = current_user[:genre].values.sum
+
     if @act == 'increase'
-      if current_user[:genre].values.sum <= 95
-        current_user.genre[@genre] += 5
-      elsif current_user[:genre].values.sum > 95 && current_user[:genre].values.sum < 100
-        current_user.genre[@genre] += 100 - current_user[:genre].values.sum
+      if user_genre_sum <= 95
+        current_user_genre[@genre] += 5
+      elsif user_genre_sum > 95 && user_genre_sum < 100
+        current_user_genre[@genre] += 100 - user_genre_sum
       end
-      current_user.save
-    elsif @act == 'decrease'
-      if current_user[:genre].values.sum >= 5 && current_user.genre[@genre] >= 5
-        current_user.genre[@genre] -= 5
-      end
-      current_user.save
+      # original one has too many statements, so refact it
+    elsif @act == 'decrease' && user_genre_sum >= 5 && current_user_genre[@genre] >= 5
+        current_user_genre[@genre] -= 5
     end
+    current_user.save
     redirect_to users_userlib_path
   end
 
@@ -74,17 +82,19 @@ class UsersController < ApplicationController
 
   def about
   end
-  
+
   def recently
     flag = false
     @songs = current_user.songs
     size = @songs.size
-    @n = params[:n].to_i
-    if @n <= (size - size % 5 )
-      if @n == (size - size % 5)
-        @n += size % 5
+    # the original issue is about @n, this variable is Uncommunicative variable name
+    # has change that to number
+    @number = params[:n].to_i
+    if @number <= (size - size % 5 )
+      if @number == (size - size % 5)
+        @number += size % 5
       else
-        @n += 5
+        @number += 5
       end
     end
   end

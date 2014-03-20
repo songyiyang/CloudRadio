@@ -1,11 +1,11 @@
 
-<div class="recent_title">Here shows Recent <%= @n %> songs you've listened </div>
+<div class="recent_title">Here shows Recent <%= @number %> songs you've listened </div>
 
-<%= link_to 'See More...', users_recently_path(:n => @n) ,{:style => "color:tomato;"} %>
+<%= link_to 'See More...', users_recently_path(:n => @number) ,{:style => "color:tomato;"} %>
 
 <div class="recent_content">
 <ol>
-<% @songs.last(@n).reverse.each do |song| %>
+<% @songs.last(@number).reverse.each do |song| %>
 	<li><em class="song_name"><%= song.name %></em>	&nbsp<%= " #{((song.duration - 5) / 60)}' #{((song.duration - 5) % 60 )}'' " %></li>
 <% end %>
 </ol>

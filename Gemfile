@@ -35,17 +35,31 @@ gem 'make_flaggable', :git => 'git://github.com/medihack/make_flaggable.git'
 
 gem 'soundcloud'
 
-gem 'bootstrap-sass', '~> 3.1.0'
+# gem 'bootstrap-sass', '~> 3.1.0'
 
 gem 'newrelic_rpm'
 
 gem 'better_errors'
+
 gem "binding_of_caller"
+
+# Includes all the needed Angular JS files.
+gem 'angularjs-rails'
+
+# For generating the JSON for the API
+gem 'active_model_serializers'
+
+# Turn off verbose logging of asset requests
+gem 'quiet_assets'
+
+gem 'bootstrap-sass'
+gem 'flat-ui-rails'
+gem 'jquery-ui-rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
 
 gem 'rails_12factor', group: :production
 
